@@ -28,7 +28,7 @@ public class ObjectPoolingManager : Singleton<ObjectPoolingManager>
     {
         int len = Enum.GetNames(typeof(NodeType)).Length;
 
-        for(int t = 0; t < len; ++t)
+        for(int t = 0; t < len-1; ++t)
         {
             NodeType nodeType = (NodeType)t;
             dicPoolingObjects.Add(t, new PoolingObject(nodeType, boardTansform));

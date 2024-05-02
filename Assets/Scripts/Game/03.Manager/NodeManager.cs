@@ -24,7 +24,10 @@ public enum NodeType
     UpDir,
     DownDir,
     RightDir,
-    LeftDir
+    LeftDir,
+
+
+    None,
 }
 
 
