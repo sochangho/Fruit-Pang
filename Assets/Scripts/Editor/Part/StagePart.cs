@@ -11,9 +11,10 @@ public class StagePart : FruitPangEditorPart
     int addStage = 0;
 
     string[] displayedOption;
+
     int[] optionValues;
 
-   
+    public int CurrentStage { get { return currentStage; } set { currentStage = value; } }
 
     public override void InitAreaRect(float x, float y, float width, float Height)
     {
@@ -24,7 +25,6 @@ public class StagePart : FruitPangEditorPart
 
         displayedOption = new string[0];
         optionValues = new int[0];
-
     }
     protected override void PartOnGUI()
     {

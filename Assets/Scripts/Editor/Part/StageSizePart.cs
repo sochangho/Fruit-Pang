@@ -7,13 +7,13 @@ using UnityEditor;
 
 public class StageSizePart : FruitPangEditorPart
 {
-    int totalWidth = 0;
-    int totalHeight = 0;
+    public int totalWidth = 0;
+    public int totalHeight = 0;
 
     private int saveTotalWidth = 0;
     private int saveTotalHeight = 0;
 
-    public int TotalWidth { get { return saveTotalWidth; } }
+    public int TotalWidth { get { return saveTotalWidth; }}
     public int TotalHeight { get { return saveTotalHeight; } }
 
     List<FruitNodeInfo> fruitNodeInfos = new List<FruitNodeInfo>();
