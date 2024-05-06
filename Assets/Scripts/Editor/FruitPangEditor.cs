@@ -12,9 +12,14 @@ public class FruitPangEditor : EditorWindow
     public TileNodeEditorPart tileNodeEditorPart;
     public FruitNodeInfoEditorPart fruitNodeInfoEditor;
 
+
+
+
     public bool isOpen = false;
 
-    // private JsonStageMap jsonStageMap = new JsonStageMap();
+    private JsonStageMap jsonStageMap = new JsonStageMap();
+
+    private static FruitPangData fruitPangData;
 
     [MenuItem("FuritPang/MapEditor")]
     private static void Init()
@@ -23,7 +28,14 @@ public class FruitPangEditor : EditorWindow
 
         editorWindow.Show();
 
+        RoadData();
     }
+
+    private static void RoadData()
+    {
+        fruitPangData = EditorGUIUtility.Load("Datas.asset") as FruitPangData;
+    }
+
 
 
     private void OnGUI()
@@ -48,13 +60,13 @@ public class FruitPangEditor : EditorWindow
 
             if (stagePart.CurrentStage > 0)
             {
-                //int curStage = stagePart.CurrentStage;
-                //int totalW = stageSizePart.TotalWidth;
-                //int totalH = stageSizePart.totalHeight;
+                int curStage = stagePart.CurrentStage;
+                int totalW = stageSizePart.TotalWidth;
+                int totalH = stageSizePart.totalHeight;
 
-                //var list = tileNodeEditorPart.NodeExtract();
+                var list = tileNodeEditorPart.NodeExtract();
 
-                //jsonStageMap.Save(curStage.ToString(), totalW, totalH, list);
+                jsonStageMap.Save(fruitPangData.GetDataPath() , curStage.ToString(), totalW, totalH, list);
 
             }
             else
@@ -90,6 +102,7 @@ public class FruitPangEditor : EditorWindow
         if (stagePart == null)
         {
             stagePart = new StagePart();
+            stagePart.loadEvent += LoadEditorStage;
             stagePart.InitAreaRect(20, 40, 500, 80);
         }
 
@@ -122,8 +135,20 @@ public class FruitPangEditor : EditorWindow
             {
                 Debug.Log(files[0].name);
 
+                int[] stages = new int[files.Length];
 
+                for(int i = 0; i < files.Length; ++i)
+                {
+                    var name =  files[i].name;
+                    int stage = int.Parse(name);
 
+                    stages[i] = stage;
+                }
+
+                stagePart.InitStageRanges(stages);
+
+                LoadEditorStage();
+              
             }
 
             isOpen = true;
@@ -131,9 +156,11 @@ public class FruitPangEditor : EditorWindow
 
     }
 
-
-
-
+    private void LoadEditorStage()
+    {
+        StageMapTotalDatas stageMapTotalDatas = jsonStageMap.Load(fruitPangData.GetDataPath(), stagePart.CurrentStage.ToString());
+        stageSizePart.LoadTileNodes(stageMapTotalDatas.totalWidth, stageMapTotalDatas.totalHeight, stageMapTotalDatas.fruitNodeInfos);
+    }
 
 
 }

@@ -41,15 +41,14 @@ public class NodeInfos
   
         }
 
-        for (int i = 0; i < GlobalSetting.TotalWidth; ++i)
-        {
-            int index;
-            index = UtilCoordinate.
-                CoordinateToindex(i, 6, GlobalSetting.TotalWidth, GlobalSetting.TotalHeight);
-
-            nodeInfomationList[index] = new NodeInfomation(i, 6, NodeType.Wall);
-        }
     }
+
+    public void NodeInfosSet(List<NodeInfomation> nodeInfomations)
+    {
+        nodeInfomationList = nodeInfomations;
+    }
+
+
 
     public List<NodeInfomation> GetNodeInfomations()
     {

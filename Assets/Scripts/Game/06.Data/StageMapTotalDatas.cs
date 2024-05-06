@@ -7,9 +7,9 @@ using UnityEngine;
 public class StageMapTotalDatas
 {
     public int totalWidth;
-    public int totalHegiht;
+    public int totalHeight;
 
-    public List<FruitNodeInfo> fruitNodeInfos = new List<FruitNodeInfo>();
+    public List<FruitNodeInfo> fruitNodeInfos;
 
    
 }

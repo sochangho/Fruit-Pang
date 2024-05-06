@@ -8,6 +8,8 @@ public class Tiles
 
 
     private ThreeMatchSetting threeMatchSetting;
+    private StageLoad stageLoad;
+
     private List<Tile> tileList = new List<Tile>();
  
     public Tile this[int x, int y]
@@ -35,10 +37,10 @@ public class Tiles
 
 
 
-    public Tiles(ThreeMatchSetting threeMatchSetting)
+    public Tiles(ThreeMatchSetting threeMatchSetting , StageLoad stageLoad)
     {
         this.threeMatchSetting = threeMatchSetting;
-
+        this.stageLoad = stageLoad;
     }
 
 
@@ -51,23 +53,25 @@ public class Tiles
 
     private void InitTileInfomation()
     {
-        int totalCount = threeMatchSetting.totalWidth * threeMatchSetting.totalHeight; // 전체 타일 개수
+        //int totalCount = threeMatchSetting.totalWidth * threeMatchSetting.totalHeight; // 전체 타일 개수
 
-        for (int i = 0; i < totalCount; ++i)
-        {
+        //for (int i = 0; i < totalCount; ++i)
+        //{
 
 
-            int index = UtilCoordinate.CoordinateToindex(5, 5, threeMatchSetting.totalWidth, threeMatchSetting.totalHeight);
+        //    int index = UtilCoordinate.CoordinateToindex(5, 5, threeMatchSetting.totalWidth, threeMatchSetting.totalHeight);
 
-            if (index == i)
-            {
-                CreateTileElementInfomation(i, TileType.None);
-            }
-            else
-            {
-                CreateTileElementInfomation(i, TileType.Node);
-            }
-        }
+        //    if (index == i)
+        //    {
+        //        CreateTileElementInfomation(i, TileType.None);
+        //    }
+        //    else
+        //    {
+        //        CreateTileElementInfomation(i, TileType.Node);
+        //    }
+        //}
+
+        tileList = stageLoad.GetTiles();
 
     }
 

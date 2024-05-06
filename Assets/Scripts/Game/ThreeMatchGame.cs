@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class ThreeMatchGame : MonoBehaviour
 {
 
@@ -34,7 +34,7 @@ public class ThreeMatchGame : MonoBehaviour
     private bool isTouchable = true;
 
 
-
+    public StageLoad stageLoad;
 
 
     List<Node> deleteNodeList = new List<Node>();
@@ -53,10 +53,18 @@ public class ThreeMatchGame : MonoBehaviour
     {
         ObjectPoolingManager.Instace.InitGame();
 
-        tiles = new Tiles(threeMatchSetting);
+        stageLoad.LoadStageMap();
+
+        threeMatchSetting.totalHeight = stageLoad.TotalH();
+        threeMatchSetting.totalWidth = stageLoad.TotalW();
+
+        Debug.Log($"≥Ù¿Ã : {threeMatchSetting.totalHeight} ");
+        Debug.Log($"≥–¿Ã : {threeMatchSetting.totalWidth} ");
+
+
+        tiles = new Tiles(threeMatchSetting, stageLoad);
         
         tileObjects = new TileObjects(threeMatchSetting, tiles);
-
         
         nodeInfos = new NodeInfos();
 
@@ -110,7 +118,8 @@ public class ThreeMatchGame : MonoBehaviour
 
         tileObjects.InitGame();
 
-        nodeInfos.InfoTestLoad(tiles); // Test;
+        //nodeInfos.InfoTestLoad(tiles); // Test;
+        nodeInfos.NodeInfosSet(stageLoad.GetInfomations());
 
         nodes.InitGame();
 
@@ -127,6 +136,9 @@ public class ThreeMatchGame : MonoBehaviour
         
 
         FocusBoardAtCenter();
+
+
+        GameStartExplosionDetect();
     }
 
 
@@ -242,6 +254,12 @@ public class ThreeMatchGame : MonoBehaviour
        var eList =  ExplosionNodeDetect();
 
        StartCoroutine(ExplosionRoutine(eList));
+    }
+
+    private void GameStartExplosionDetect()
+    {
+        SetStopTouchable();
+        StartExplosion();
     }
 
     IEnumerator DelaySwapComplete()
@@ -544,6 +562,12 @@ public class ThreeMatchGame : MonoBehaviour
     public void ChangeDropDirection(NodeMover.Direction direction)
     {
         nodeMover.ChangeDropDirection(direction);
+    }
+
+
+    public void LobbyScene()
+    {
+        SceneManager.LoadScene("LobbyScene");
     }
 
 }

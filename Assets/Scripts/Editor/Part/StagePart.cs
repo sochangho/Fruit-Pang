@@ -14,6 +14,9 @@ public class StagePart : FruitPangEditorPart
 
     int[] optionValues;
 
+    public event System.Action loadEvent;
+
+
     public int CurrentStage { get { return currentStage; } set { currentStage = value; } }
 
     public override void InitAreaRect(float x, float y, float width, float Height)
@@ -53,8 +56,30 @@ public class StagePart : FruitPangEditorPart
     {
         Debug.Log("Load Stage" + stage);
 
+        loadEvent?.Invoke();
+
         // 스테이지 로드 
     }
+
+    public void InitStageRanges(int[] stages)
+    {
+        displayedOption = new string[stages.Length];
+        optionValues = new int[stages.Length];
+
+        for(int i = 0; i < stages.Length; ++i)
+        {
+            displayedOption[i] = stages[i].ToString();
+        }
+
+        for(int i = 0; i  < stages.Length; ++i)
+        {
+            optionValues[i] = stages[i];
+        }
+
+        currentStage = stages[0];
+
+    }
+
 
     public void AddStage(int stage)
     {

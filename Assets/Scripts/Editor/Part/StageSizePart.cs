@@ -38,6 +38,8 @@ public class StageSizePart : FruitPangEditorPart
         totalWidth = EditorGUILayout.IntField("Total Width", totalWidth);
         totalHeight  = EditorGUILayout.IntField("Total Height", totalHeight);
 
+
+
         EditorGUILayout.Space();
 
         if (GUILayout.Button("Create"))
@@ -60,6 +62,16 @@ public class StageSizePart : FruitPangEditorPart
         tileNodeEditorPart.NodeCreate(fruitNodeInfos);
     }
     
+    public void LoadTileNodes(int w ,int h, List<FruitNodeInfo> fruitNodeInfos)
+    {
+        saveTotalHeight = totalHeight = h;
+        saveTotalWidth = totalWidth = w;
+
+        this.fruitNodeInfos = fruitNodeInfos;
+
+        tileNodeEditorPart.NodeCreate(fruitNodeInfos);
+    }
+
 
 }
 

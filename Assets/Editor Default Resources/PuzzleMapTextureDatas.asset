@@ -25,7 +25,7 @@ MonoBehaviour:
   Random10: {fileID: 2800000, guid: 5ae6eb41f9c140747b8b25299e38f3c1, type: 3}
   Down: {fileID: 2800000, guid: 9739228cece48e541a53efdab6d56d32, type: 3}
   Up: {fileID: 2800000, guid: 6f01d9b55be5197489bdba8cca04f043, type: 3}
-  Left: {fileID: 2800000, guid: 9739228cece48e541a53efdab6d56d32, type: 3}
+  Left: {fileID: 2800000, guid: cb82a255783f0d3448a5949430139542, type: 3}
   Right: {fileID: 2800000, guid: d5665150f040a3a45aa1b3956cb18b34, type: 3}
   Wall: {fileID: 2800000, guid: 9ed8408a6ebfbb8438b31f6d6dd3b76a, type: 3}
   NodeNone: {fileID: 2800000, guid: 719e0ea6c279727479bec4c2d57db26c, type: 3}

@@ -119,7 +119,7 @@ public class TileNodeEditorPart : FruitPangEditorPart
 
        foreach(var f in fruitEditorNodeButtons)
         {
-            fruitEditorNodeButtons.Add(f);
+            fruitNodeInfos.Add(f.nodeInfo);
         }
 
         return fruitNodeInfos;

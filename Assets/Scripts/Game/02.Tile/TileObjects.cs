@@ -16,6 +16,7 @@ public class TileObjects
 
             if (x >= threeMatchSetting.totalWidth || y >= threeMatchSetting.totalHeight || x < 0 || y < 0)
             {
+                Debug.Log($"<color=red>ÀüÃ¼ : {threeMatchSetting.totalWidth}, {threeMatchSetting.totalHeight} // {x},{y}</color>");
 
                 throw new IndexOutOfRangeException();
             }

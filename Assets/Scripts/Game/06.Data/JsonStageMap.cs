@@ -8,16 +8,10 @@ using System.Text;
 
 public class JsonStageMap
 {
-    string path;
-    public JsonStageMap()
-    {
-        //path = $"Resouces/Data/Map";
-    }
+ 
 
 
-
-
-    public void Save(string stage, int totalWidth, int totalHeight, List<FruitNodeInfo> fruitNodeInfo)
+    public void Save(string path, string stage, int totalWidth, int totalHeight, List<FruitNodeInfo> fruitNodeInfo)
     {
        string jsonData  =  StageToJson(totalWidth, totalHeight, fruitNodeInfo);
 
@@ -31,7 +25,7 @@ public class JsonStageMap
     }
 
 
-    public StageMapTotalDatas Load(string stage)
+    public StageMapTotalDatas Load(string path ,string stage)
     {
         string loadPath = $"{path}/{stage}.json";
         FileStream fileStream = new FileStream(loadPath, FileMode.Open);
@@ -41,6 +35,8 @@ public class JsonStageMap
         
         string jsonData = Encoding.UTF8.GetString(data);
 
+     
+
         return JsonToStageMapData(jsonData);
     }
 
@@ -49,7 +45,7 @@ public class JsonStageMap
     {
         StageMapTotalDatas stageMapTotalDatas = new StageMapTotalDatas();
 
-        stageMapTotalDatas.totalHegiht = totalHeight;
+        stageMapTotalDatas.totalHeight = totalHeight;
         stageMapTotalDatas.totalWidth = totalWidth;
         stageMapTotalDatas.fruitNodeInfos = fruitNodeInfos;
 
