@@ -35,10 +35,21 @@ public class JsonStageMap
         
         string jsonData = Encoding.UTF8.GetString(data);
 
-     
+       
 
         return JsonToStageMapData(jsonData);
     }
+
+    public StageMapTotalDatas LoadGame(string stage)
+    {
+
+        TextAsset textAsset =  Resources.Load<TextAsset>($"Data/Map/{stage}");
+
+        string jsonData = textAsset.ToString();
+
+        return  JsonToStageMapData(jsonData);
+    }
+
 
 
     public string StageToJson(int totalWidth,int totalHeight, List<FruitNodeInfo> fruitNodeInfos)

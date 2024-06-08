@@ -34,7 +34,7 @@ public class StagePart : FruitPangEditorPart
         EditorGUILayout.BeginVertical();
 
         EditorGUILayout.BeginHorizontal();
-        addStage = EditorGUILayout.IntField("Total Width", addStage);
+        addStage = EditorGUILayout.IntField("Add Stage", addStage);
         if (GUILayout.Button("AddStage")) AddStage(addStage);
 
         EditorGUILayout.EndHorizontal();

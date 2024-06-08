@@ -157,7 +157,18 @@ public class ThreeMatchGame : MonoBehaviour
 
         threeMatchSetting.boardTransform.position = boardPos;
 
-        Camera.main.orthographicSize = (threeMatchSetting.totalWidth / 2f);
+        
+
+        if(threeMatchSetting.totalHeight > threeMatchSetting.totalWidth)
+        {
+            Camera.main.orthographicSize = (threeMatchSetting.totalHeight / 2f) + 1;
+        }
+        else
+        {
+            Camera.main.orthographicSize = (threeMatchSetting.totalWidth / 2f) + 1;
+        }
+
+        
 
     }
 

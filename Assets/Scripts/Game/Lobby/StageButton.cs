@@ -27,9 +27,8 @@ public class StageButton : MonoBehaviour
 
     public void EnterStage()
     {
-        int stage = int.Parse(stageName);
-
-        PlayerPrefs.SetInt("GameStage", stage);
+      
+        PlayerPrefs.SetString("GameStage", stageName);
 
         SceneManager.LoadScene("GameScene");
     }

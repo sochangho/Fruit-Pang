@@ -25,7 +25,8 @@ public class StageLoad : MonoBehaviour
         tiles = new List<Tile>();
         nodes = new List<NodeInfomation>();
 
-        var stageData = stageMap.Load(loadPath, currentStage.ToString());
+        var stageData = stageMap.LoadGame(PlayerPrefs.GetString("GameStage")); 
+           // stageMap.Load(loadPath, PlayerPrefs.GetString("GameStage"));
 
         totalHeight = stageData.totalHeight;
         totalWidth = stageData.totalWidth;
