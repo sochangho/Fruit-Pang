@@ -6,12 +6,12 @@ using UnityEngine;
 
 public class FruitPangEditor : EditorWindow
 {
-
+    public ScoreEditorPart scoreEditorPart;
     public StagePart stagePart;
     public StageSizePart stageSizePart;
     public TileNodeEditorPart tileNodeEditorPart;
     public FruitNodeInfoEditorPart fruitNodeInfoEditor;
-
+    public GoalsEditorPart goalsEditorPart;
 
 
 
@@ -45,6 +45,8 @@ public class FruitPangEditor : EditorWindow
         stageSizePart.FruitPangOnGUI();
         tileNodeEditorPart.FruitPangOnGUI();
         fruitNodeInfoEditor.FruitPangOnGUI();
+        goalsEditorPart.FruitPangOnGUI();
+        scoreEditorPart.FruitPangOnGUI();
 
         GUILayout.BeginArea(new Rect(20, 730, 200, 50));
         SaveStage();
@@ -66,7 +68,17 @@ public class FruitPangEditor : EditorWindow
 
                 var list = tileNodeEditorPart.NodeExtract();
 
-                jsonStageMap.Save(fruitPangData.GetDataPath() , curStage.ToString(), totalW, totalH, list);
+                var gene = goalsEditorPart.goalEditorNodeTypeElements;
+                var gese = goalsEditorPart.goalEditorStateElements;
+
+                ScoreData scoreData = new ScoreData();
+                scoreData.scoreOne = scoreEditorPart.scoreOne;
+                scoreData.scoreTwo = scoreEditorPart.scoreTwo;
+                scoreData.scoreThree = scoreEditorPart.scoreThree;
+
+
+                jsonStageMap.Save(fruitPangData.GetDataPath() ,curStage, curStage.ToString(), totalW, totalH, list
+                    ,gene,gese,scoreData);
 
             }
             else
@@ -80,10 +92,22 @@ public class FruitPangEditor : EditorWindow
     public void PartInit()
     {
 
+        if(scoreEditorPart == null)
+        {
+            scoreEditorPart = new ScoreEditorPart();
+            scoreEditorPart.InitAreaRect(20+500,220,400,180);
+        }
+
+        if(goalsEditorPart == null)
+        {
+            goalsEditorPart = new GoalsEditorPart();
+            goalsEditorPart.InitAreaRect(20 + 500, 40, 400, 180);
+        }
+
         if (fruitNodeInfoEditor == null)
         {
             fruitNodeInfoEditor = new FruitNodeInfoEditorPart();
-            fruitNodeInfoEditor.InitAreaRect(20 + 500, 40, 400, 680);
+            fruitNodeInfoEditor.InitAreaRect(20 + 500, 400, 400, 320);
         }
 
         if (tileNodeEditorPart == null)
@@ -105,6 +129,10 @@ public class FruitPangEditor : EditorWindow
             stagePart.loadEvent += LoadEditorStage;
             stagePart.InitAreaRect(20, 40, 500, 80);
         }
+
+
+        
+
 
         OpenFruitMapEditor();
     }
@@ -130,6 +158,13 @@ public class FruitPangEditor : EditorWindow
                 var n = tileNodeEditorPart[0, 0];
 
                 fruitNodeInfoEditor.SetInfo(n);
+
+                goalsEditorPart.Setting(null, null);
+
+                scoreEditorPart.scoreOne = 0;
+                scoreEditorPart.scoreThree = 0;
+                scoreEditorPart.scoreThree = 0;
+
             }
             else
             {
@@ -160,6 +195,12 @@ public class FruitPangEditor : EditorWindow
     {
         StageMapTotalDatas stageMapTotalDatas = jsonStageMap.Load(fruitPangData.GetDataPath(), stagePart.CurrentStage.ToString());
         stageSizePart.LoadTileNodes(stageMapTotalDatas.totalWidth, stageMapTotalDatas.totalHeight, stageMapTotalDatas.fruitNodeInfos);
+        
+        goalsEditorPart.Setting(stageMapTotalDatas.goalEditorNodeTypeElements, stageMapTotalDatas.goalEditorStateElements);
+        
+        scoreEditorPart.scoreOne = stageMapTotalDatas.scoreData.scoreOne;
+        scoreEditorPart.scoreTwo = stageMapTotalDatas.scoreData.scoreTwo;
+        scoreEditorPart.scoreThree = stageMapTotalDatas.scoreData.scoreThree;
     }
 
 

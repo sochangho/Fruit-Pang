@@ -11,6 +11,7 @@ public class EffectObject : MonoBehaviour
     
     public void Delete()
     {
+
         ObjectPoolingManager.Instace.PushEffectObject(this);
     }
 

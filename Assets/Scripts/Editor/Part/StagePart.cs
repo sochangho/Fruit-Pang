@@ -4,6 +4,7 @@ using UnityEngine;
 #if UNITY_EDITOR
 
 using UnityEditor;
+using System;
 public class StagePart : FruitPangEditorPart
 {
     int currentStage = 0;
@@ -63,6 +64,9 @@ public class StagePart : FruitPangEditorPart
 
     public void InitStageRanges(int[] stages)
     {
+
+        Array.Sort(stages);
+
         displayedOption = new string[stages.Length];
         optionValues = new int[stages.Length];
 

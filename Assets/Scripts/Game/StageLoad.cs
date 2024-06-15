@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class StageLoad : MonoBehaviour
 {
-
+    private int currentStage;
     
-    public int currentStage { get { return PlayerPrefs.GetInt("GameStage"); } }
+    public int CurrentStage { get { return currentStage; } }
+
+    public StageMapTotalDatas stageData;
 
     private List<Tile> tiles;
 
@@ -20,16 +22,18 @@ public class StageLoad : MonoBehaviour
 
     private string loadPath = "Assets/Resources/Data/Map";
 
+
     public void LoadStageMap()
     {
         tiles = new List<Tile>();
         nodes = new List<NodeInfomation>();
 
-        var stageData = stageMap.LoadGame(PlayerPrefs.GetString("GameStage")); 
-           // stageMap.Load(loadPath, PlayerPrefs.GetString("GameStage"));
-
+        stageData = InfoManager.Instace.GetStageDatas(PlayerPrefs.GetInt(StringKey.STAGE_LEVEL)); //stageMap.LoadGame(PlayerPrefs.GetString("GameStage"));
+        currentStage = stageData.stagelevel;
         totalHeight = stageData.totalHeight;
         totalWidth = stageData.totalWidth;
+
+        
 
         foreach(var  info in stageData.fruitNodeInfos)
         {
@@ -71,6 +75,10 @@ public class StageLoad : MonoBehaviour
 
     public List<NodeInfomation> GetInfomations() => nodes;
 
+    public JsonStageMap GetStageInfo() => stageMap;
+
     public int TotalW() { return totalWidth; }
     public int TotalH() { return totalHeight;  }
+
+   
 }

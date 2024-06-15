@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c942ff74de1a294590b2f74c3454711, type: 3}
+  m_Name: PuzzleMapTextureDatas
+  m_EditorClassIdentifier: 
+  Red: {fileID: 2800000, guid: 1a8ef263e25ca5749b14a86e8b202df0, type: 3}
+  Blue: {fileID: 2800000, guid: 6dbc40e630cf91b4abd2542ff1897f63, type: 3}
+  Green: {fileID: 2800000, guid: a36ae66130ad85443aee1f5432fee381, type: 3}
+  Orange: {fileID: 2800000, guid: 8baee24bd3d85f445b53bb7e66caeb85, type: 3}
+  Yellow: {fileID: 2800000, guid: 2d54bb0bddaa80c4185dc1ef40f63f27, type: 3}
+  BombRed: {fileID: 2800000, guid: 6fcbad9343b78344187db465e304c8a0, type: 3}
+  BombBlue: {fileID: 2800000, guid: 5f9d8482cd3c7194696918da4158c7b4, type: 3}
+  BombGreen: {fileID: 2800000, guid: 337990c56b7b32b49ac566c013d91ee5, type: 3}
+  BombOrange: {fileID: 2800000, guid: 82d48aa23ee48334eb9569ac698e7b4a, type: 3}
+  BombYellow: {fileID: 2800000, guid: dae8ea201f064c74b92321e0b3267ed8, type: 3}
+  Random10: {fileID: 2800000, guid: 5ae6eb41f9c140747b8b25299e38f3c1, type: 3}
+  Down: {fileID: 2800000, guid: 9739228cece48e541a53efdab6d56d32, type: 3}
+  Up: {fileID: 2800000, guid: 6f01d9b55be5197489bdba8cca04f043, type: 3}
+  Left: {fileID: 2800000, guid: cb82a255783f0d3448a5949430139542, type: 3}
+  Right: {fileID: 2800000, guid: d5665150f040a3a45aa1b3956cb18b34, type: 3}
+  Wall: {fileID: 2800000, guid: 9ed8408a6ebfbb8438b31f6d6dd3b76a, type: 3}
+  NodeNone: {fileID: 2800000, guid: 719e0ea6c279727479bec4c2d57db26c, type: 3}
+  TileNone: {fileID: 2800000, guid: 9d2a167226d5cd147a87921e29bb1edb, type: 3}
+  StateFreeze: {fileID: 2800000, guid: f244794b88222a543bbc83b7931b31de, type: 3}

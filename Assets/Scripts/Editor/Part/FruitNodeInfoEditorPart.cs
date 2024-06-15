@@ -6,7 +6,7 @@ using UnityEngine;
 
 using UnityEditor;
 
-public class FruitNodeInfoEditorPart : FruitPangEditorPart
+public sealed class FruitNodeInfoEditorPart : FruitPangEditorPart
 {
 
     private FruitEditorNodeButton button;

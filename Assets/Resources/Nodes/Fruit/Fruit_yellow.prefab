@@ -153,6 +153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c216eace0d1ecf42b4076df0c33eef8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundName: fruit
+  soundType: 1
   nodeType: 4
   nodeState: 0
 --- !u!58 &4414519440827388999
@@ -184,6 +186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1.5
+  moveState: 0
 --- !u!1 &151480
 GameObject:
   m_ObjectHideFlags: 0

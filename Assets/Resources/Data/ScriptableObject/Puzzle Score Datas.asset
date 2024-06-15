@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a99ded8c640fa644875c83fd990a06f, type: 3}
+  m_Name: Puzzle Score Datas
+  m_EditorClassIdentifier: 
+  Red: 2
+  Blue: 2
+  Green: 2
+  Orange: 2
+  Yellow: 2
+  BombRed: 3
+  BombBlue: 3
+  BombGreen: 3
+  BombOrange: 3
+  BombYellow: 3
+  Random10: 4
+  Down: 4
+  Up: 4
+  Left: 4
+  Right: 4
+  StateFreeze: 4

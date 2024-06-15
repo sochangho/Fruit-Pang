@@ -2,6 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
+public enum GameState
+{
+    Playing,
+    End
+}
+
+
 public class ThreeMatchGame : MonoBehaviour
 {
 
@@ -33,9 +41,10 @@ public class ThreeMatchGame : MonoBehaviour
 
     private bool isTouchable = true;
 
-
     public StageLoad stageLoad;
 
+    public GameGoals gameGoals;
+    public GameScore gameScore;
 
     List<Node> deleteNodeList = new List<Node>();
 
@@ -44,9 +53,39 @@ public class ThreeMatchGame : MonoBehaviour
 
     List<Node> duplicationNodes = new List<Node>(); // 중복노드
 
+    #region UI variable
+
+    //------------------------------------------------------------
+
+    [SerializeField] private GoalsUI goalsUI;
+    [SerializeField] private ScoreProgressUI scoreProgressUI;
+
+    //---------------------------------------------------------------
+
+    #endregion
 
 
+    #region GameState
 
+    GameState gameState;
+
+    public void PlayGame()
+    {
+        gameState = GameState.Playing;
+        InitGoals();
+        InitScore();
+        GameStartExplosionDetect();
+    }
+
+    public void EndGame()
+    {
+        gameState = GameState.End;
+
+
+    }
+
+
+    #endregion
 
 
     private void Awake()
@@ -55,12 +94,10 @@ public class ThreeMatchGame : MonoBehaviour
 
         stageLoad.LoadStageMap();
 
+
+
         threeMatchSetting.totalHeight = stageLoad.TotalH();
         threeMatchSetting.totalWidth = stageLoad.TotalW();
-
-        Debug.Log($"높이 : {threeMatchSetting.totalHeight} ");
-        Debug.Log($"넓이 : {threeMatchSetting.totalWidth} ");
-
 
         tiles = new Tiles(threeMatchSetting, stageLoad);
         
@@ -89,6 +126,8 @@ public class ThreeMatchGame : MonoBehaviour
         {
             OnInputHandler();
 
+
+#if UNITY_EDITOR
             if (Input.GetKeyDown(KeyCode.W))
             {
                 nodeMover.ChangeDropDirection(NodeMover.Direction.Up);
@@ -105,7 +144,7 @@ public class ThreeMatchGame : MonoBehaviour
             {
                 nodeMover.ChangeDropDirection(NodeMover.Direction.Down);
             }
-
+#endif
 
         }
     }
@@ -133,13 +172,42 @@ public class ThreeMatchGame : MonoBehaviour
 
         nodeMover = new NodeMover(nodes, tileObjects );
 
-        
-
         FocusBoardAtCenter();
-
-
-        GameStartExplosionDetect();
+        PlayGame();
     }
+
+    public void InitGoals()
+    {
+
+        gameGoals = new GameGoals();
+
+        gameGoals.goalSettingEvent += goalsUI.Setting;
+        gameGoals.GoalNodeTypeEvent += goalsUI.NodeTypeUpdate;
+        gameGoals.GoalStateTypeEvent += goalsUI.NodeStateUpdate;
+        gameGoals.CompleteGame += EndGame;
+
+#if UNITY_ANDROID && !UNITY_EDITOR
+        gameGoals.CompleteGame += () =>
+        {
+            FirebaseDBManager.Instace.UserLevelIncrease(currentGameStage: stageLoad.CurrentStage);
+        };
+#endif
+        gameGoals.SettingGoals(stageLoad.stageData.goalEditorNodeTypeElements,
+            stageLoad.stageData.goalEditorStateElements);
+   
+    }
+
+    public void InitScore()
+    {
+        gameScore = new GameScore();
+        gameScore.ScoreEventNodeType += scoreProgressUI.UpdateProgress;
+        gameScore.ScoreEventNodeState += scoreProgressUI.UpdateProgress;
+
+        gameScore.Setting(stageLoad.stageData.scoreData);
+
+    }
+
+   
 
 
 
@@ -185,9 +253,7 @@ public class ThreeMatchGame : MonoBehaviour
             node = hit.transform.GetComponent<Node>();
 
             if (node != null && node.MovableNode())
-            {
-               //Debug.Log($"Node {node.X},{node.Y}");
-
+            {              
                 clickCoordinate.x = node.X;
                 clickCoordinate.y = node.Y;
                 return true;
@@ -316,9 +382,13 @@ public class ThreeMatchGame : MonoBehaviour
         {
 
             SetStartTouchable();
+
+            if(gameState == GameState.End)
+            {
+                UIManager.Instace.OpenPopup<ResultPopup>(null);
+            }
+
         }
-
-
     }
 
     IEnumerator EmptyMoveRoutine()
@@ -349,7 +419,7 @@ public class ThreeMatchGame : MonoBehaviour
     }
 
 
-    #region Exlosion
+#region Exlosion
 
     public List<Node> ExplosionNodeDetect()
     {
@@ -567,8 +637,10 @@ public class ThreeMatchGame : MonoBehaviour
     public void Explosion(Node node)
     {
         nodes.ExplosionNode(node);
+        gameGoals.GoalNodeTypeUpdate(node.GetNodeType());
+        gameScore.UpdateScore_NodeType(node.GetNodeType());
     }
-    #endregion
+#endregion
 
     public void ChangeDropDirection(NodeMover.Direction direction)
     {
@@ -580,6 +652,8 @@ public class ThreeMatchGame : MonoBehaviour
     {
         SceneManager.LoadScene("LobbyScene");
     }
+
+    
 
 }
 

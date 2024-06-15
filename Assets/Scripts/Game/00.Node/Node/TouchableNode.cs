@@ -6,6 +6,7 @@ public class TouchableNode : Node
 {
     public override void ExplosionNode()
     {
+        base.ExplosionNode();
         ObjectPoolingManager.Instace.PushNode(this);
     
     }

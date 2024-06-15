@@ -369,3 +369,17 @@ public class NodeManager : Singleton<NodeManager>
 
 
 }
+
+[System.Serializable]
+public class GoalNodeTypeElement
+{
+    public NodeType nodeType;
+    public int count;
+}
+
+[System.Serializable]
+public class GoalStateElement
+{
+    public NodeState nodeState;
+    public int count;
+}

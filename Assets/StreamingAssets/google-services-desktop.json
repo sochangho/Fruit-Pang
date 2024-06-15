@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "621457121681",
+    "firebase_url": "https://fruitpangfirebase-default-rtdb.firebaseio.com",
+    "project_id": "fruitpangfirebase",
+    "storage_bucket": "fruitpangfirebase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:621457121681:android:0762ba7322753c98e17a30",
+        "android_client_info": {
+          "package_name": "com.Changho.FruitPang"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4gxnFJmg_B9zqo5DNxnOuSHdI2lUeUvY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

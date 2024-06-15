@@ -34,9 +34,13 @@ public class FreezeEffect : NodeEffect
 
     public override void EffectEnd()
     {
+        base.EffectEnd();
+
         node.SetExplosion(origineExplosionableState);
         node.SetMovalble(origineMovableState);
-        //FreezeObject Destory;'
+
+        effectObject.StatePlaySound();
+
         ObjectPoolingManager.Instace.PushStateObject(effectObject);
     }
 

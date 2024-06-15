@@ -14,7 +14,7 @@ public class WallNode : Node
 
     public override bool ExplosionableNode() => false;
 
-    public override void ExplosionNode() { }
+    public override void ExplosionNode() { base.ExplosionNode(); }
 
     
 

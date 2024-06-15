@@ -153,6 +153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c216eace0d1ecf42b4076df0c33eef8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundName: fruit
+  soundType: 1
   nodeType: 1
   nodeState: 0
 --- !u!58 &7930247315560509530

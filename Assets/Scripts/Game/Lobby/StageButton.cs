@@ -6,33 +6,38 @@ using UnityEngine.SceneManagement;
 
 public class StageButton : MonoBehaviour
 {
-    private string stageName;
-
+   
+    private int stageLevel;
     [SerializeField]
     private Text stageText;
     [SerializeField]
     private Button button;
 
-
-
-
-    public void SetStageButton(string stageName)
+    public void SetStageButton(int stageLevel)
     {
         button.onClick.AddListener(EnterStage);
+        this.stageLevel = stageLevel;
+        stageText.text = $"Stage : {stageLevel.ToString()}";
+    }
 
-        this.stageName = stageName;
-        stageText.text = $"Stage : {stageName}";
-
+    public void StageActive(int currentlevel)
+    {
+        if(currentlevel < stageLevel)
+        {
+            button.interactable = false;
+            return;
+        }
+        button.interactable = true;
     }
 
     public void EnterStage()
     {
       
-        PlayerPrefs.SetString("GameStage", stageName);
-
+        PlayerPrefs.SetInt(StringKey.STAGE_LEVEL, stageLevel);
         SceneManager.LoadScene("GameScene");
     }
 
+    
 
 
 }

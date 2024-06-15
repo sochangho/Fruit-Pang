@@ -10,7 +10,7 @@ public enum NodeState
 }
 
 
-public class Node : MonoBehaviour
+public class Node : DefaultObject
 {
     private float speed = 1.5f;
 
@@ -178,8 +178,10 @@ public class Node : MonoBehaviour
     }
 
     public NodeType GetNodeType() => nodeType;
-    public void SetNodeState(NodeState nodeState) => this.nodeState = nodeState; 
-    public virtual void ExplosionNode() { }
+    public NodeState GetNodeState() => nodeState;
+
+    public void SetNodeState(NodeState nodeState) => this.nodeState = nodeState;
+    public virtual void ExplosionNode() { PlaySound(); }
     public virtual bool MovableNode() => isMovableNode;
     public virtual bool ExplosionableNode() => isExplosionableNode;
     public void SetMovalble(bool isMovable) => isMovableNode = isMovable;

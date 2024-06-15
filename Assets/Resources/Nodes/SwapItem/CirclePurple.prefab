@@ -115,6 +115,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e69a23d6cd28e342a718b365893df4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundName: item
+  soundType: 1
   nodeType: 11
   nodeState: 0
   countExplosionNode: 10
