@@ -12,15 +12,19 @@ public class ItemHelper
     
     private Queue<NodeType>[] items;
 
+    private List<Node> tempNList;
 
     public void InitGame()
     {
         items = new Queue<NodeType>[GlobalSetting.TotalWidth];
 
+
         for(int i = 0; i < GlobalSetting.TotalWidth; i++)
         {
             items[i] = new Queue<NodeType>();
         }
+
+        tempNList = new List<Node>();
     }
 
     public List<GameRunTimeItemInfo> DetectNode(List<Node> nodesVertical,List<Node> nodesHorizontal, List<Node> duplicationNodes )
@@ -114,7 +118,7 @@ public class ItemHelper
     {
         threeMatchPuzzles_V.Clear();
 
-        List<Node> tempNList = new List<Node>();
+       
         tempNList.Clear();
         for (int i = 0; i < nodesVertical.Count; ++i)
         {
@@ -152,7 +156,7 @@ public class ItemHelper
     {
         threeMatchPuzzles_H.Clear();
 
-        List<Node> tempNList = new List<Node>();
+       
         tempNList.Clear();
         for (int i = 0; i < nodesHorizontal.Count; ++i)
         {

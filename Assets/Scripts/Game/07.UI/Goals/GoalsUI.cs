@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class GoalsUI : MonoBehaviour
 {
-    //[SerializeField] private PuzzleMapTextureDatas textureDatas;
-
+  
     [SerializeField] private GoalNodeTypeElementUI nodeTypeUI;
     [SerializeField] private GoalStateTypeElementUI stateTypeUI;
 
@@ -18,7 +17,8 @@ public class GoalsUI : MonoBehaviour
         foreach(var e in gne)
         {
             var clone = Instantiate(nodeTypeUI, this.transform);
-            var sprite = GameDatasManager.Instace.puzzleMapTextureDatas.GetNodeTypeSprite(e.nodeType);              
+            var data = GameDatasManager.Instace.puzzleTextureDatas;
+            var sprite = data.GetNodeTypeSprite(e.nodeType);              
             clone.Setting(e.nodeType,sprite,e.count.ToString());
             nodeTypes.Add(clone);
         }
@@ -26,7 +26,8 @@ public class GoalsUI : MonoBehaviour
         foreach(var e in gse)
         {
             var clone = Instantiate(stateTypeUI, this.transform);
-            var sprite = GameDatasManager.Instace.puzzleMapTextureDatas.GetNodeStateSprite(e.nodeState);
+            var data = GameDatasManager.Instace.puzzleTextureDatas;
+            var sprite = data.GetNodeStateSprite(e.nodeState);
             clone.Setting(e.nodeState, sprite, e.count.ToString());
             stateTypes.Add(clone);
         }

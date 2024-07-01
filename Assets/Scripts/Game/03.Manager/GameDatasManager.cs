@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class GameDatasManager : Singleton<GameDatasManager>
 {
-    public PuzzleMapTextureDatas puzzleMapTextureDatas;
+    public InGamePuzzleTextureData puzzleTextureDatas;
     public PuzzleScoreDatas puzzleScoreDatas;
+
+   
 
 }
